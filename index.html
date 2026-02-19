@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website e Serviços Digitais — Selecione o Seu Pacote</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8f0f8 100%);
+            color: #1a1a1a;
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .intro-text {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 1.75rem;
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            color: #1e3a8a;
+            line-height: 1.7;
+        }
+
+        .category {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .category-header h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .service-item {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .service-item:hover {
+            background: white;
+            border-color: #3b82f6;
+            transform: translateX(4px);
+        }
+
+        .service-item:has(input[type="checkbox"]:checked) {
+            background: white;
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            accent-color: #2563eb;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .service-content {
+            flex: 1;
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-info {
+            flex: 1;
+        }
+
+        .service-label {
+            display: block;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+            font-size: 1.15rem;
+        }
+
+        .service-type {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 0.3rem 0.85rem;
+            border-radius: 6px;
+            margin-top: 0.25rem;
+            font-weight: 600;
+        }
+
+        .service-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2563eb;
+            white-space: nowrap;
+            margin-top: 2px;
+        }
+
+        .service-price.tbc {
+            font-size: 1.15rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .service-desc {
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.7;
+            margin-top: 0.5rem;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 3px solid #22c55e;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .total-section h3 {
+            font-size: 1.4rem;
+            color: #15803d;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #15803d;
+        }
+
+        .total-note {
+            font-size: 1rem;
+            color: #166534;
+            margin-top: 0.75rem;
+        }
+
+        .counter {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .counter.has-selection {
+            background: #dcfce7;
+            border-color: #22c55e;
+        }
+
+        .counter p {
+            font-weight: 600;
+            color: #92400e;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .counter.has-selection p {
+            color: #15803d;
+        }
+
+        .submit-section {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem 4rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .note {
+            font-size: 1rem;
+            color: #64748b;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+                font-size: 15px;
+            }
+
+            .header {
+                padding: 2rem 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .service-header {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .service-price {
+                font-size: 1.4rem;
+            }
+
+            .total-amount {
+                font-size: 2.75rem;
+            }
+
+            .btn-submit {
+                width: 100%;
+                padding: 1.25rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Selecione os Seus Serviços</h1>
+            <p>Escolha os serviços de que necessita para construir a presença digital da sua empresa de viagens</p>
+        </div>
+
+        <div class="form-card">
+            <div class="intro-text">
+                <strong>Como funciona:</strong> Selecione abaixo os serviços que lhe interessam. O custo total será calculado automaticamente. Entraremos em contacto com um resumo detalhado e os próximos passos.
+            </div>
+
+            <form action="https://formspree.io/f/xgolzrpo" method="POST" id="servicesForm">
+                
+                <!-- Category 1: Identidade da Marca -->
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">🎨</span>
+                        <h3>Identidade da Marca</h3>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Nome da Marca (incl. domain availability research, social media handle availability & registration)" data-price="125" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Nome da Marca</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€125</div>
+                                </div>
+                                <div class="service-desc">
+                                    Criamos um nome memorável e profissional para a sua empresa de viagens. Isto inclui verificar se o endereço do website (como onomedasuaempresa.com) está disponível, garantir que os perfis nas redes sociais (Instagram, Facebook) estão livres e registá-los em seu nome. Um bom nome ajuda os clientes a lembrarem-se de si e a encontrá-lo facilmente na internet.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Criação / Atualização de Slogan" data-price="25" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Criação / Atualização de Slogan</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€25</div>
+                                </div>
+                                <div class="service-desc">
+                                    Uma frase que aparece junto ao nome da sua empresa, como "A Sua Porta de Entrada para Portugal" ou "Viagens Personalizadas, Memórias Inesquecíveis". Ajuda os clientes a perceber imediatamente o que torna os seus serviços especiais e diferentes dos concorrentes.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Seleção de Paleta de Cores" data-price="50" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Seleção de Paleta de Cores</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€50</div>
+                                </div>
+                                <div class="service-desc">
+                                    Escolhemos cores profissionais para a sua marca que combinam bem entre si e transmitem a ideia de viagem (como azuis do oceano, laranjas do pôr do sol ou tons naturais). Estas cores serão utilizadas de forma consistente no seu website, cartões de visita e redes sociais, dando-lhe uma imagem cuidada e de confiança.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Design / Modernização de Logótipo (incl. Favicon)" data-price="100" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Design / Modernização de Logótipo</span>
+                                        <span class="service-type">Pagamento único • Inclui Favicon</span>
+                                    </div>
+                                    <div class="service-price">€100</div>
+                                </div>
+                                <div class="service-desc">
+                                    Um logótipo profissional que representa a sua empresa de viagens — pode incluir elementos como aviões, bússolas, mapas ou referências portuguesas. Funciona na perfeição em cartões de visita, no seu website e nas redes sociais. Inclui também um favicon (o pequeno ícone que aparece no separador do browser), dando ao seu site um aspeto ainda mais profissional.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Categoria 2: Website -->
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">🌐</span>
+                        <h3>Website</h3>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Professional Static Website (PT)" data-price="750" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Website Profissional em Português</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€750</div>
+                                </div>
+                                <div class="service-desc">
+                                    Um website completo e moderno em português para a sua empresa de viagens. Inclui: página inicial a apresentar os seus serviços, página "Sobre Nós" a contar a sua história, páginas de serviços com o que tem para oferecer, galeria de fotografias de destinos, página de contacto com mapa e formulário, e toda a configuração técnica. Rápido, seguro e com boa apresentação em qualquer dispositivo. É a sua montra digital onde os clientes ficam a conhecê-lo e fazem as suas reservas.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Pacote de Idioma (English, French, Spanish, or other)" data-price="50" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Pacote de Idioma</span>
+                                        <span class="service-type">Por idioma</span>
+                                    </div>
+                                    <div class="service-price">€50</div>
+                                </div>
+                                <div class="service-desc">
+                                    Adicione inglês, francês, espanhol ou qualquer outro idioma ao seu website. Os visitantes podem clicar num botão para mudar de língua. Ideal para chegar a turistas internacionais que visitam Portugal. Cada pacote inclui a tradução profissional de todo o conteúdo do website e um menu de seleção de idioma.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Redação de Conteúdo para o Website (incl. terms and conditions, privacy policy)" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Redação de Conteúdo para o Website</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    Escrevemos todo o texto do seu website num português claro e cativante (ou no idioma que preferir). Isto inclui a descrição dos seus serviços, a história da sua empresa e as páginas legalmente obrigatórias como Termos e Condições e Política de Privacidade. Poderá rever e aprovar tudo antes de o website ser publicado.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Ilustrações e Ícones" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Ilustrações e Ícones</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    Ícones e gráficos simples e profissionais distribuídos pelo seu website — como um avião para voos, uma cama para alojamentos, uma câmara para fotografias, etc. Tornam o website mais fácil de percorrer e visualmente mais apelativo, sem depender apenas de fotografias.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Fotografias e Vídeos Profissionais" data-price="tbc" data-type="tbc">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Fotografias e Vídeos Profissionais</span>
+                                        <span class="service-type">Pagamento único • Preço personalizado</span>
+                                    </div>
+                                    <div class="service-price tbc">A Definir</div>
+                                </div>
+                                <div class="service-desc">
+                                    Fotografias e vídeos de alta qualidade dos seus destinos, dos seus clientes satisfeitos e da sua equipa. Uma fotografia profissional destaca o seu website e ajuda os clientes a perceber o que podem esperar. Estes conteúdos podem ser reutilizados no website, nas redes sociais, no Google Maps e em qualquer outra comunicação da empresa. O preço depende do número de locais e dos dias de filmagem necessários.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Formulário de Contacto e Pedidos" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Formulário de Contacto e Pedidos</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    Um formulário simples onde os potenciais clientes podem fazer perguntas ou pedir orçamentos. Quando alguém o preenche, recebe de imediato um e-mail com os dados e a mensagem dessa pessoa. Muito mais fiável do que apresentar apenas o seu endereço de e-mail (que pode atrair mensagens indesejadas).
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Botão WhatsApp" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Botão WhatsApp</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    Um botão de WhatsApp visível no seu website que os visitantes podem clicar para iniciar imediatamente uma conversa consigo. Muitos portugueses e turistas internacionais preferem o WhatsApp para questões rápidas. Abre diretamente na aplicação WhatsApp com o seu número já preenchido.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Otimização para Telemóvel" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Otimização para Telemóvel</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    O seu website ajusta-se automaticamente para ficar perfeito em telemóveis e tablets. Como a maioria dos turistas navega no telemóvel enquanto viaja, isto é indispensável. O texto é legível, os botões são fáceis de tocar, as imagens redimensionam-se corretamente e os menus funcionam sem dificuldade em ecrãs pequenos.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Otimização da Velocidade do Website" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Otimização da Velocidade do Website</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    Garantimos que o seu website carrega rapidamente (em menos de 3 segundos). Websites lentos frustram os visitantes, que muitas vezes saem antes de ver o conteúdo. Um carregamento rápido também melhora a sua posição no Google, o que significa que mais pessoas o encontram quando pesquisam serviços de viagens.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Category 3: Configuração Técnica -->
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">⚙️</span>
+                        <h3>Configuração Técnica</h3>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Registo de Domínio" data-price="50" data-type="yearly">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Registo de Domínio</span>
+                                        <span class="service-type">Por ano</span>
+                                    </div>
+                                    <div class="service-price">€50</div>
+                                </div>
+                                <div class="service-desc">
+                                    O endereço do seu website (como jpviagens.com ou onomedasuaempresa.pt). Registamo-lo em seu nome por um ano e é renovado anualmente. Este é o seu endereço permanente na internet, que lhe pertence — os clientes escrevem-no no browser para encontrar o seu website. Inclui a extensão .com ou .pt.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Configuração do Domínio" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Configuração do Domínio</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    Tratamos de toda a configuração técnica para ligar o seu nome de domínio ao website. Isto inclui as definições de DNS, o certificado SSL (o cadeado que mostra que o seu site é seguro) e garantir que tudo aponta para o sítio certo. Não precisa de perceber nada disto — nós tratamos de tudo.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Configuração do Alojamento Web" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Configuração do Alojamento Web</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    O alojamento web é como alugar um espaço na internet onde o seu website fica guardado. Configuramos tudo com um fornecedor de alojamento fiável, fazemos o carregamento dos ficheiros do website, configuramos a segurança e garantimos que tudo funciona sem problemas a toda a hora. O seu site carrega rapidamente para visitantes de qualquer parte do mundo.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Aquisição de E-mail Profissional" data-price="50" data-type="yearly">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Aquisição de E-mail Profissional</span>
+                                        <span class="service-type">Por ano</span>
+                                    </div>
+                                    <div class="service-price">€50</div>
+                                </div>
+                                <div class="service-desc">
+                                    Endereços de e-mail profissionais com o seu nome de domínio — como <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b02050d042b011b1d020a0c0e051845080406">[email&#160;protected]</a> ou <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="74161b1b1f1d1a1307340d1b01061601071d1a1107075a0400">[email&#160;protected]</a> em vez de gmail.com. Transmite muito mais profissionalismo na comunicação com os clientes. Inclui proteção contra spam e funciona com qualquer aplicação de e-mail no telemóvel ou no computador. A subscrição anual cobre e-mails ilimitados enviados e recebidos.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Configuração do E-mail Profissional" data-price="0" data-type="included">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Configuração do E-mail Profissional</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€0</div>
+                                </div>
+                                <div class="service-desc">
+                                    Configuramos as suas contas de e-mail profissional e mostramos-lhe como aceder a elas no computador, no telemóvel e no tablet. Configuramo-las para funcionar com o programa de e-mail que preferir (Outlook, Apple Mail, Gmail, etc.) e garantimos que os e-mails chegam corretamente aos clientes.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Instalação de Análise do Website" data-price="100" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Instalação de Análise do Website</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€100</div>
+                                </div>
+                                <div class="service-desc">
+                                    Instalamos o Google Analytics para que possa ver quantas pessoas visitam o seu website, que páginas consultam, de onde vêm (pesquisa no Google, redes sociais, etc.) e que serviços despertam mais interesse. Estes dados ajudam-no a conhecer melhor os seus clientes e a melhorar a sua comunicação. Inclui um painel simples que pode consultar a qualquer momento.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Configuração de Consentimento de Cookies (RGPD)" data-price="25" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Configuração de Consentimento de Cookies (RGPD)</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€25</div>
+                                </div>
+                                <div class="service-desc">
+                                    A lei europeia obriga os websites a pedir autorização aos visitantes antes de recolher dados. Adicionamos um aviso profissional de consentimento de cookies que aparece na primeira visita. O visitante pode aceitar ou recusar, e a sua empresa fica em conformidade com o RGPD. Protege-o legalmente e transmite confiança aos clientes europeus.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Category 4: Presença Local -->
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">📍</span>
+                        <h3>Presença Local</h3>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Configuração do Perfil Google Business" data-price="50" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Configuração do Perfil Google Business</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€50</div>
+                                </div>
+                                <div class="service-desc">
+                                    Criamos ou otimizamos a sua ficha gratuita no Google Business para que apareça no Google Maps e nos resultados de pesquisa local. Quando os turistas pesquisam "agência de viagens perto de mim" ou termos semelhantes no Google, a sua empresa aparece com a morada, número de telefone, website, horário, fotografias e avaliações de clientes. Indispensável para a visibilidade local.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Configuração do Apple Business Connect" data-price="50" data-type="one-time">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Configuração do Apple Business Connect</span>
+                                        <span class="service-type">Pagamento único</span>
+                                    </div>
+                                    <div class="service-price">€50</div>
+                                </div>
+                                <div class="service-desc">
+                                    Semelhante ao Google, mas para utilizadores de iPhone. A sua empresa aparece corretamente no Apple Maps, nos resultados da Siri e noutros serviços Apple. Quando alguém pede à Siri agências de viagens ou pesquisa rotas no iPhone, encontra as informações corretas da sua empresa. Muitos turistas usam iPhone, pelo que esta configuração tem um grande valor.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Análise e Relatórios (Presença Local)" data-price="150" data-type="per-request">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Análise e Relatórios</span>
+                                        <span class="service-type">Por pedido</span>
+                                    </div>
+                                    <div class="service-price">€150</div>
+                                </div>
+                                <div class="service-desc">
+                                    Relatórios que mostram o desempenho das suas fichas no Google/Apple Maps: quantas pessoas viram a sua ficha, ligaram para o seu número, pediram indicações, visitaram o seu website e que termos de pesquisa os levaram até si. Ajuda-o a perceber se a sua presença local está a atrair clientes e o que está a funcionar.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Category 5: Visibilidade -->
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">🔍</span>
+                        <h3>Visibilidade</h3>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="SEO — Posicionamento no Google" data-price="150" data-type="per-request">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">SEO — Posicionamento no Google</span>
+                                        <span class="service-type">Por pedido</span>
+                                    </div>
+                                    <div class="service-price">€150</div>
+                                </div>
+                                <div class="service-desc">
+                                    Otimização para Motores de Pesquisa — melhoramos o seu website para que apareça mais acima quando as pessoas pesquisam no Google pelo tipo de serviços que oferece. Isto envolve otimizar o conteúdo, melhorar aspetos técnicos e aumentar a autoridade do seu website. Melhor posição = mais visitantes = mais reservas.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Visibilidade em IA (ChatGPT, etc.)" data-price="150" data-type="per-request">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Visibilidade em IA (ChatGPT, etc.)</span>
+                                        <span class="service-type">Por pedido</span>
+                                    </div>
+                                    <div class="service-price">€150</div>
+                                </div>
+                                <div class="service-desc">
+                                    Uma forma cada vez mais comum de as pessoas encontrarem serviços de viagens: perguntar ao ChatGPT, à IA do Google ou a outros assistentes de inteligência artificial. Otimizamos o seu website e a sua presença online para que, quando alguém pedir recomendações de viagens a uma destas ferramentas, a sua empresa tenha mais probabilidade de ser sugerida. A importância deste canal cresce à medida que a IA se torna mais popular.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Category 6: Manutenção Contínua -->
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">🔄</span>
+                        <h3>Manutenção Contínua</h3>
+                    </div>
+
+                    <div class="service-item">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="servico" value="Manutenção do Website e Atualização de Conteúdos" data-price="150" data-type="per-request">
+                            <div class="service-content">
+                                <div class="service-header">
+                                    <div class="service-info">
+                                        <span class="service-label">Manutenção do Website e Atualização de Conteúdos</span>
+                                        <span class="service-type">Por pedido</span>
+                                    </div>
+                                    <div class="service-price">€150</div>
+                                </div>
+                                <div class="service-desc">
+                                    Atualizações regulares ao website à medida que a sua empresa cresce: adição de novos serviços, atualização de preços, substituição de fotografias, correção de problemas, manutenção do software atualizado e garantia de segurança. Com preço Por pedido, consoante o tipo de alterações necessárias.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Total Section -->
+                <div id="totalSection" class="total-section" style="display: none;">
+                    <h3>Total Estimado</h3>
+                    <div class="total-amount" id="totalAmount">€0</div>
+                    <p class="total-note" id="totalNote"></p>
+                </div>
+
+                <!-- Counter and Submit -->
+                <div id="counter" class="counter">
+                    <p>⚠️ Por favor selecione pelo menos um serviço para continuar</p>
+                </div>
+
+                <div class="submit-section">
+                    <button type="submit" class="btn-submit" id="submitBtn" disabled>
+                        ✉️ Enviar a Minha Seleção
+                    </button>
+                    <p class="note">Será redirecionado para uma página de confirmação</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const form = document.getElementById('servicesForm');
+        const counter = document.getElementById('counter');
+        const submitBtn = document.getElementById('submitBtn');
+        const totalSection = document.getElementById('totalSection');
+        const totalAmount = document.getElementById('totalAmount');
+        const totalNote = document.getElementById('totalNote');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        function updateCounter() {
+            const checkedBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const checkedCount = checkedBoxes.length;
+            
+            let total = 0;
+            let hasTBC = false;
+            
+            checkedBoxes.forEach(checkbox => {
+                const price = checkbox.getAttribute('data-price');
+                if (price === 'tbc') {
+                    hasTBC = true;
+                } else if (price !== '0') {
+                    total += parseFloat(price);
+                }
+            });
+
+            if (checkedCount === 0) {
+                counter.className = 'counter';
+                counter.innerHTML = '<p>⚠️ Por favor selecione pelo menos um serviço para continuar</p>';
+                submitBtn.disabled = true;
+                totalSection.style.display = 'none';
+            } else {
+                counter.className = 'counter has-selection';
+                counter.innerHTML = `<p>✓ Selecionou ${checkedCount} serviço${checkedCount !== 1 ? 's' : ''}</p>`;
+                submitBtn.disabled = false;
+                
+                if (total > 0 || hasTBC) {
+                    totalSection.style.display = 'block';
+                    totalAmount.textContent = hasTBC ? `€${total}+` : `€${total}`;
+                    totalNote.textContent = hasTBC 
+                        ? '* Alguns serviços têm preço personalizado (assinalados como A Definir). O orçamento final será enviado após analisarmos a sua seleção.'
+                        : 'Este é o seu total estimado. Um orçamento detalhado será enviado após analisarmos a sua seleção.';
+                } else {
+                    totalSection.style.display = 'none';
+                }
+            }
+        }
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateCounter);
+        });
+
+        // Make entire service item clickable
+        document.querySelectorAll('.service-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (e.target.type !== 'checkbox') {
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    checkbox.checked = !checkbox.checked;
+                    updateCounter();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
